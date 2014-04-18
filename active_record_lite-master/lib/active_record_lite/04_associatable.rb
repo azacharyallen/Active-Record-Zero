@@ -43,11 +43,27 @@ end
 module Associatable
   # Phase IVb
   def belongs_to(name, options = {})
-    # ...
+    options = BelongsToOptions.new(name, options)
+
+    define_method(name) do
+      foreign_key = self.send(options.foreign_key)
+      primary_key = self.send(options.primary_key)
+      model_class = options.model_class
+
+      model_class.where(primary_key => foreign_key).first
+    end
   end
 
   def has_many(name, options = {})
-    # ...
+    options = HasManyOptions.new(name, self.name, options)
+
+    define_method(name) do
+      foreign_key = options.foreign_key
+      primary_key = self.send(options.primary_key)
+      model_class = options.model_class
+
+      model_class.where(foreign_key => primary_key)      
+    end
   end
 
   def assoc_options
@@ -62,12 +78,4 @@ end
 
 class Cat < SQLObject
 end
-
-m = HasManyOptions.new(:cats, :human, {})
-p m.class_name
-p m.foreign_key
-p m.primary_key
-
-p m.model_class
-p m.table_name
 
