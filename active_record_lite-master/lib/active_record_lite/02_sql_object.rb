@@ -100,6 +100,3 @@ class SQLObject < MassObject
     attributes.to_a.map { |attribute| attribute.last}
   end
 end
-
-class Cat < SQLObject
-end
