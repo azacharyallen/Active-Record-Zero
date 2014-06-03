@@ -1,5 +1,4 @@
 require_relative 'db_connection'
-require_relative '01_mass_object'
 require 'active_support/inflector'
 
 class MassObject
@@ -59,7 +58,6 @@ class SQLObject < MassObject
   end
 
   def insert
-    #p col_names = self.class.columns.map { |name| name.to_s }.join(", ")
     p col_names = self.attributes.keys.join(", ")
     p question_marks = Array.new(self.attributes.count) {"?"}.join(", ")
     DBConnection.execute(<<-SQL, *attribute_values)
