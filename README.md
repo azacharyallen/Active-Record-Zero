@@ -1,3 +1,4 @@
-After the project, you can review the solution here:
+# Active Record Zero
+##### Same great taste, no calories
 
-* https://github.com/appacademy-solutions/active_record_lite/tree/solution
+A project to gain a deeper understanding of Active Record and how it acts as an interface to an underlying DB.  The fun stuff all lives in /lib.  Run the specs in /spec or just poke around.
