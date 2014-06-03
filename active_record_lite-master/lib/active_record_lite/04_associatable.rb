@@ -81,7 +81,3 @@ class SQLObject
   # Mixin Associatable here...
   extend Associatable
 end
-
-class Cat < SQLObject
-end
-
